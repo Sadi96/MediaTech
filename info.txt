@@ -1,0 +1,2 @@
+nagłówki - font-family: 'Yusei Magic', sans-serif;
+tekst na stronie - font-family: 'Poppins', sans-serif;

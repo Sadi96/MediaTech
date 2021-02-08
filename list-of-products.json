@@ -1,0 +1,101 @@
+{"products": [
+    {
+        "brand": "Samsung",
+        "name": "Galaxy S21 Ultra",
+        "price": "5999",
+        "photo": "img/products/smartphones/samsung-smartfon-s21-ultra.jpg",
+        "category": "smartphone",
+        "id": "1230528",
+        "properties": [["Przekątna wyświetlacza", "6,8\""], ["Rozdzielczość ekranu", "3200 x 1440 pikseli"], ["Wyświetlacz", "Dynamic AMOLED 2X WQHD+"], ["Aparat tylny", "108 Mpix + 12 Mpix + 10 Mpix + 10 Mpix"], ["System operacyjny", "Android 11"], ["Procesor", "Samsung Exynos 2100 8-rdzeniowy"], ["Pamięć RAM", "12 GB"], ["Pamięć wbudowana", "256 GB"], ["Pojemność baterii", "5000 mAh"]]
+    },
+    {
+        "brand": "Samsung",
+        "name": "Galaxy M51",
+        "price": "1299",
+        "photo": "img/products/smartphones/samsung-smartfon-m51.jpg",
+        "category": "smartphone",
+        "id": "1221630",
+        "properties": [["Przekątna wyświetlacza", "6,67\""], ["Rozdzielczość ekranu", "2340 x 1080 pikseli"], ["Wyświetlacz", "SUPER AMOLED Plus"], ["Aparat tylny", "64 Mpix + 12 Mpix + 5 Mpix + 5 Mpix"], ["System operacyjny", "Android 10"], ["Procesor", "Qualcomm Snapdragon 730 8-rdzeniowy"], ["Pamięć RAM", "8 GB"], ["Pamięć wbudowana", "128 GB"], ["Pojemność baterii", "7000 mAh"]]
+    },
+    {
+        "brand": "Xiaomi",
+        "name": "Redmi Note 9 Pro",
+        "price": "989",
+        "photo": "img/products/smartphones/xiaomi-redmi-note-9-pro.jpg",
+        "category": "smartphone",
+        "id": "1215297",
+        "properties": [["Przekątna wyświetlacza", "6,67\""], ["Rozdzielczość ekranu", "2400 x 1080 pikseli"], ["Wyświetlacz", "Full HD+"], ["Aparat tylny", "64 Mpix + 8 Mpix + 5 Mpix + 2 Mpix"], ["System operacyjny", "Android 10"], ["Procesor", "Qualcomm Snapdragon 720G 8-rdzeniowy"], ["Pamięć RAM", "6 GB"], ["Pamięć wbudowana", "128 GB"], ["Pojemność baterii", "5020 mAh"]]
+    },
+    {
+        "brand": "Apple",
+        "name": "iPhone 12‌ Pro ",
+        "price": "5199",
+        "photo": "img/products/smartphones/apple-iphone-12-pro.jpg",
+        "category": "smartphone",
+        "id": "1225724",
+        "properties": [["Przekątna wyświetlacza", "6,1\""], ["Rozdzielczość ekranu", "2532 x 1170 pikseli"], ["Wyświetlacz", "Super Retina XDR"], ["Aparat tylny", "12 Mpix + 12 Mpix + 12 Mpix"], ["System operacyjny", "iOS 14"], ["Procesor", "Apple A14 Bionic"], ["Pamięć wbudowana", "128 GB"]]
+    },
+    {
+        "brand": "LG",
+        "name": "OLED55BX3LB",
+        "price": "4849",
+        "photo": "img/products/tv/lg-oled55bx.jpg",
+        "category": "tv",
+        "id": "1223834",
+        "properties": [["Ekran", "55 cali / 139 cm, 16:9"], ["Zgodność z HD", "4K UHD, 3840 x 2160"], ["Formaty HDR", "HDR10, HLG (Hybrid Log-Gamma), Dolby Vision"], ["Częstotliwość odświeżania", "100 Hz"], ["Podświetlenie matrycy", "OLED"], ["Technologia 3D", "nie"], ["Zakrzywiony ekran", "nie"], ["Kontrast dynamiczny", "Infinite"]]
+    },
+    {
+        "brand": "Samsung",
+        "name": "UE65TU7102K",
+        "price": "2699",
+        "photo": "img/products/tv/samsung-ue65tu7102k.jpg",
+        "category": "tv",
+        "id": "1210980",
+        "properties": [["Ekran", "65 cali / 163 cm, 16:9"], ["Zgodność z HD", "4K UHD, 3840 x 2160"], ["Formaty HDR", "HDR10+, HLG (Hybrid Log-Gamma)"], ["Częstotliwość odświeżania", "50 Hz"], ["Podświetlenie matrycy", "Edge LED"], ["Technologia 3D", "nie"], ["Zakrzywiony ekran", "nie"], ["Kontrast dynamiczny", "Mega"]]
+    },
+    {
+        "brand": "Sony",
+        "name": "KD-75XG8096",
+        "price": "4799",
+        "photo": "img/products/tv/sony-kd-75xg8096.jpg",
+        "category": "tv",
+        "id": "1185829",
+        "properties": [["Ekran", "75 cali / 189 cm, 16:9"], ["Zgodność z HD", "4K UHD, 3840 x 2160"], ["Formaty HDR", "HDR10, HLG (Hybrid Log-Gamma)"], ["Częstotliwość odświeżania", "50 Hz"], ["Podświetlenie matrycy", "Direct LED"], ["Technologia 3D", "nie"], ["Zakrzywiony ekran", "nie"]]
+    },
+    {
+        "brand": "Canon",
+        "name": "EOS 2000D",
+        "price": "1899",
+        "photo": "img/products/cameras/canon-aparat-eos-2000d.jpg",
+        "category": "camera",
+        "id": "1195426",
+        "properties": [["Rozdzielczość", "24,1 Mpix"], ["Rodzaj przetwornika", "CMOS 22,3 x 14,9 mm"], ["Wielkość matrycy", "APS-C"], ["Zapis na kartach pamięci", "SD, SDHC, SDXC"], ["Standardy zapisu zdjęć", "RAW , JPEG"], ["Maksymalna wielkość zapisywanego zdjęcia", "6000 x 4000 pikseli"], ["Format nagrywania filmów", "Full HD (1920 x 1080)"]]
+    },
+    {
+        "brand": "Nikon",
+        "name": "D610 body",
+        "price": "3899",
+        "photo": "img/products/cameras/nikon-d610-body.jpg",
+        "category": "camera",
+        "id": "1003820",
+        "properties": [["Rozdzielczość", "24,3 Mpix"], ["Rodzaj przetwornika", "CMOS 35,9 x 24 mm"], ["Wielkość matrycy", "Pełna klatka"], ["Zapis na kartach pamięci", "SD, SDHC, SDXC"], ["Standardy zapisu zdjęć", "RAW , JPEG"], ["Maksymalna wielkość zapisywanego zdjęcia", "6016 x 4016 pikseli"], ["Format nagrywania filmów", "Full HD (1920 x 1080)"]]
+    },
+    {
+        "brand": "Sony",
+        "name": "WH-1000XM4",
+        "price": "1559",
+        "photo": "img/products/headphones/sony-wh1000xm4b.jpg",
+        "category": "headphones",
+        "id": "1220290",
+        "properties": [["Typ słuchawek", "nauszne"], ["Typ podłączenia", "bezprzewodowe z opcją kabla 3,5mm"], ["Kodek Bluetooth", "SBC, AAC, LDAC"], ["Czas pracy do", "30 h"], ["Zasięg", "10 m"], ["Mikrofon", "tak"], ["Regulacja głośności", "tak"]]
+    },
+    {
+        "brand": "Apple",
+        "name": "AirPods Pro",
+        "price": "919",
+        "photo": "img/products/headphones/apple-airpods-pro.jpg",
+        "category": "headphones",
+        "id": "1204679",
+        "properties": [["Typ słuchawek", "douszne"], ["Typ podłączenia", "bezprzewodowe"], ["Czas pracy do", "5 h"], ["Zasięg", "10 m"], ["Dodatkowe zasilanie z etui", "24 h"], ["Mikrofon", "tak"], ["Regulacja głośności", "nie"], ["Aktywna redukcja szumów", "tak"]]
+    }
+]}

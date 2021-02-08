@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaTech | Sklep internetowy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/mediatech-logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Yusei+Magic&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1d595fc26e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="content-wrapper">
+    <header>
+        <div id="header-buttons">
+            <img src="img/mediatech-logo.png" alt="Logo Image" id="logo-image">
+            <div class="wrapper">
+                <div id="cart-button"><i class="fas fa-shopping-cart"></i></div>
+                <div id="hamburger-button" class="visible"><i class="fas fa-bars"></i></div>
+                <div id="hamburger-close-button"><i class="fas fa-times"></i></i></div>
+            </div>
+        </div>
+        <nav id="menu-options">
+            <ul>
+                <li><a href="#home-section">Strona główna</a></li>
+                <li><a href="#about-section">O nas</a></li>
+                <li><a href="#shop-section">Sklep internetowy</a></li>
+            </ul>
+        </nav>
+        <div id="cart-content">
+            <p>W Twoim koszyku znajduje się:</p>
+            <p><span id="cart-content-quantity">0</span> <span id="declination">produktów</span></p>
+            <a href="#" class="button" id="cart-content-button">Pokaż zawartość koszyka</a>
+        </div>
+    </header>
+    <main>
+        <section id="home-section">
+            <h2>Witaj</h2>
+            <h1>w MediaTech</h1>
+            <div class="button">
+                <a href="#shop-section" class="button">Sprawdź naszą ofertę</a>
+            </div>
+        </section>
+        <section id="about-section">
+            <h2>O nas</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi a massa lobortis accumsan ac commodo arcu. Nulla lacinia condimentum magna id efficitur. Pellentesque vitae feugiat tellus. In tellus est, porttitor non fringilla dignissim, tincidunt non metus.</p>
+            <a href="#" class="button">Zobacz więcej</a>
+            <div id="about-us-photo">
+                <img src="img/women-team.jpg" alt="Our team">
+            </div>
+        </section>
+        <section id="shop-section">
+            <div class="section-content-wrapper"><h2>Sklep</h2>
+                <div id="shop-categories">
+                    <button class="category-button" data-category="all">Wszystkie</button>
+                    <button class="category-button" data-category="smartphone">Smartfony</button>
+                    <button class="category-button" data-category="tv">Telewizory</button>
+                    <button class="category-button" data-category="camera">Aparaty</button>
+                    <button class="category-button" data-category="headphones">Słuchawki</button>
+                </div>
+                <div id="searching-panel">
+                    <div id="search-button"><i class="fas fa-search"></i></div>
+                    <input type="text" placeholder="Wyszukaj produkt...">
+                </div>
+                <div id="products-panel"></div>
+        </section>
+    </main>
+    <footer>
+        <p>MediaTech 2020</p>
+        <p>Wszystkie prawa zastrzeżone, powielanie informacji zawartych na tej stronie zabronione.</p>
+    </footer>
+</div>
+<div class="popup-wrapper" id="info-popup-wrapper">
+    <div class="pop-up info-popup">
+        <div id="info-popup-header">
+            <div id="name-wrapper">
+                <span id="product-brand"></span>
+                <span id="product-name"></span>
+                <span id="product-price"></span>
+            </div>
+            <div class="popup-close-button"><i class="fas fa-times"></i></i></div>
+        </div>
+        <div id="product-photo"><img src="" alt=""></div>
+        <button id="add-to-cart-button" class="button">Dodaj do koszyka</button>
+        <div id="product-description">
+            <ul id="product-properties">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="popup-wrapper" id="cart-popup-wrapper">
+    <div class="pop-up cart-popup">
+        <div id="cart-popup-header">
+            <h1>Twój koszyk</h1>
+            <div class="popup-close-button"><i class="fas fa-times"></i></i></div>
+        </div>
+        <h2>Niczego tu jeszcze nie ma</h2>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

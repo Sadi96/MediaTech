@@ -22,8 +22,8 @@ const infoPopUpWrapper = document.getElementById('info-popup-wrapper');
 const infoPopUp = document.querySelector('.info-popup');
 const cartPopUpWrapper = document.getElementById('cart-popup-wrapper');
 const cartPopUp = document.querySelector('.cart-popup');
-const addToCartButton = document.getElementById('add-to-cart-button');
 const showCartContentButton = document.getElementById('cart-content-button');
+let addToCartButton;
 
 // APP DATA HANDLERS
 let productsInCart = [];
@@ -87,7 +87,6 @@ function animateAddingToCart(productCard, addingWrapper) {
             addToCartButton.addEventListener('click', addingWrapper);
         }, 2000);
     }
-
 }
 
 function addToCart() {
@@ -111,43 +110,152 @@ function freezeContentWrapper() {
     contentWrapper.classList.add('hidden');
 }
 
-function showInfoPopUp(e) {
+function showInfoPopUp() {
     freezeContentWrapper();
     infoPopUpWrapper.classList.add('visible');
     infoPopUp.classList.add('visible');
-    infoPopUp.querySelector('.popup-close-button').addEventListener('click', closeInfoPopUp);
-    infoPopUpWrapper.addEventListener('click', closeInfoPopUp);
+    infoPopUp.querySelector('.popup-close-button').addEventListener('click', closePopUp);
+    infoPopUpWrapper.addEventListener('click', closePopUp);
 }
 
-function closeInfoPopUp(e) {
+function adjustContentWrapperPosition() {
+    contentWrapper.style.position = '';
+    contentWrapper.style.top = ``;
+    document.querySelector('html').style.scrollBehavior = 'auto';
+    window.scrollTo(0, scrollY);
+    document.querySelector('html').style.scrollBehavior = 'smooth';
+}
+
+function closeInfoPopUp() {
+    contentWrapper.classList.remove('hidden');
+    infoPopUpWrapper.classList.remove('visible');
+    infoPopUp.classList.remove('visible');
+    document.getElementById('product-properties').innerHTML = '';
+    adjustContentWrapperPosition();
+}
+
+function closeCartPopUp() {
+    contentWrapper.classList.remove('hidden');
+    cartPopUpWrapper.classList.remove('visible');
+    cartPopUp.classList.remove('visible');
+    adjustContentWrapperPosition();
+    setTimeout(() => {
+        document.getElementById('cart-popup-content').innerHTML = '';
+    }, 500);
+}
+
+function closePopUp(e) {
     if(e.target === infoPopUp.querySelector('.fa-times') || e.target === infoPopUpWrapper) {
-        contentWrapper.classList.remove('hidden');
-        infoPopUpWrapper.classList.remove('visible');
-        infoPopUp.classList.remove('visible');
-        setTimeout(() => {
-            contentWrapper.style.position = '';
-            contentWrapper.style.top = ``;
-            document.querySelector('html').style.scrollBehavior = 'auto';
-            window.scrollTo(0, scrollY);
-            document.querySelector('html').style.scrollBehavior = 'smooth';
-        }, 500)
+        closeInfoPopUp();
+    } else if (e.target === cartPopUp.querySelector('.fa-times') || e.target === cartPopUpWrapper) {
+        closeCartPopUp()
     }
 }
 
+function renderCartContent() {
+    const cartPopUpContent = document.getElementById('cart-popup-content');
+    if(!productsInCart.length) {
+        cartPopUpContent.innerHTML = `<h2>Niczego tu jeszcze nie ma</h2>`;
+    } else {
+        cartPopUpContent.innerHTML = ``;
+        const ul = document.createElement('ul');
+        productsInCart.forEach(product => {
+            const li = document.createElement('li');
+            const photo = document.createElement('div');
+            const properties = document.createElement('div');
+            const buttons = document.createElement('div');
+            const nameSpan = document.createElement('span');
+            const priceSpan = document.createElement('span');
+            const infoButton = document.createElement('button');
+            const deleteButton = document.createElement('button');
+            li.setAttribute('data-plu', `${product.id}`)
+            photo.classList.add('product-photo');
+            properties.classList.add('product-properties');
+            buttons.classList.add('product-buttons');
+            photo.innerHTML = `<img src="${product.photo}" alt="${product.name}" />`;
+            nameSpan.classList.add('product-name');
+            nameSpan.textContent = `${product.name}`;
+            priceSpan.classList.add('product-price');
+            priceSpan.textContent = `${product.price}zł`;
+            infoButton.textContent = `Informacje`;
+            deleteButton.textContent = `Usuń`;
+            buttons.appendChild(infoButton);
+            buttons.appendChild(deleteButton);
+            properties.appendChild(nameSpan);
+            properties.appendChild(priceSpan);
+            li.appendChild(photo);
+            li.appendChild(properties);
+            li.appendChild(buttons);
+            ul.appendChild(li);
+            infoButton.addEventListener('click', switchToProductInfo);
+        })
+        cartPopUpContent.appendChild(ul);
+    }
+}
+
+function switchToProductInfo() {
+    const plu = this.parentNode.parentNode.dataset.plu;
+    closeCartPopUp(); 
+    generateProductInfo(plu);
+    replaceButtons();
+    showInfoPopUp();
+}
+
+function replaceButtons() {
+    const buttonWrapper = document.getElementById('button-wrapper');
+    buttonWrapper.innerHTML = '';
+    let button = document.createElement('button');
+    button.classList.add('button');
+    button.setAttribute('id', 'back-to-cart-button');
+    button.textContent = 'Wróć do koszyka';
+    buttonWrapper.appendChild(button);
+    button.addEventListener('click', switchToCart);
+}
+
+function switchToCart() {
+    closeInfoPopUp();
+    showCartPopUp();
+}
+
 function showCartPopUp() {
+    renderCartContent();
     freezeContentWrapper();
     cartPopUpWrapper.classList.add('visible');
     cartPopUp.classList.add('visible');
+    cartPopUp.querySelector('.popup-close-button').addEventListener('click', closePopUp);
+    cartPopUpWrapper.addEventListener('click', closePopUp);
 }
 
 function generateProductInfo(plu) {
     const product = listOfProducts.filter(product => product.id === plu)[0];
-    const productBrand = document.getElementById('product-brand');
-    const productName = document.getElementById('product-name');
-    const productPrice = document.getElementById('product-price');
-    const productPhoto = document.getElementById('product-photo');
     const productProperties = document.getElementById('product-properties');
+    const productPhoto = document.getElementById('product-photo').querySelector('img');
     productProperties.innerHTML = '';
+    resetButtonWrapper();
+    renderProductProperties(product, productProperties);
+    document.getElementById('product-brand').innerHTML = product.brand;
+    document.getElementById('product-name').innerHTML = product.name;
+    document.getElementById('product-price').innerHTML = `${product.price}zł`;
+    productPhoto.setAttribute('src', product.photo);
+
+    function addingWrapper() {
+        addToCartFromPopup(product, productPhoto, addingWrapper);
+    }
+    addToCartButton.addEventListener('click', addingWrapper);
+}
+
+function resetButtonWrapper() {
+    const buttonWrapper = document.getElementById('button-wrapper');
+    buttonWrapper.innerHTML = '';
+    const addToCartBtn = document.createElement('button');
+    addToCartBtn.classList.add('button');
+    addToCartBtn.setAttribute('id', 'add-to-cart-button');
+    addToCartBtn.textContent = `Dodaj do koszyka`;
+    buttonWrapper.appendChild(addToCartBtn);
+    addToCartButton = addToCartBtn;
+}
+
+function renderProductProperties(product, productProperties) {
     for(let i = 0; i<product.properties.length; i++) {
         const li = document.createElement('li');
         const leftSpan = document.createElement('span');
@@ -158,15 +266,6 @@ function generateProductInfo(plu) {
         li.appendChild(rightSpan);
         productProperties.appendChild(li);
     }
-    productBrand.innerHTML = product.brand;
-    productName.innerHTML = product.name;
-    productPrice.innerHTML = `${product.price}zł`;
-    productPhoto.querySelector('img').setAttribute('src', product.photo);
-
-    function addingWrapper() {
-        addToCartFromPopup(product, productPhoto, addingWrapper);
-    }
-    addToCartButton.addEventListener('click', addingWrapper);
 }
 
 function showProductInfo(product) {

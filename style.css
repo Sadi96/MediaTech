@@ -16,10 +16,9 @@ body {
 }
 
 .content-wrapper.hidden {
-    overflow-y: hidden;
+    overflow-y: scroll;
     filter: blur(5px);
     z-index: 0;
-    overflow-y: scroll;
 }
 
 #header-buttons {
@@ -250,7 +249,7 @@ h2 {
 }
 
 .product-card.bought,
-#product-photo.bought img {
+#product-photo img.bought {
     box-shadow: 0px 0px 40px 0px #0097de;
 }
 
@@ -344,6 +343,7 @@ footer p {
 
 .popup-wrapper.visible {
     position: relative;
+    display: block;
     left: 0;
     width: 100%;
     min-height: 100vh;
@@ -403,7 +403,12 @@ footer p {
     transition: box-shadow 1s ease;
 }
 
-#add-to-cart-button {
+#button-wrapper {
+    text-align: center;
+}
+
+#add-to-cart-button,
+#back-to-cart-button {
     display: inline-block;
     background-color: #fff;
     color: #33364d;
@@ -435,14 +440,16 @@ ul#product-properties {
     font-size: 1.2rem;
 }
 
-ul#product-properties li {
+ul#product-properties li,
+#cart-popup-content ul li {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0;
     border-bottom: 1px solid #109e92;
 }
 
-ul#product-properties li:last-child {
+ul#product-properties li:last-child,
+#cart-popup-content ul li:last-child {
     border-bottom: none;
 }
 
@@ -460,6 +467,53 @@ ul#product-properties li span:nth-of-type(2) {
 .cart-popup h2 {
     font-size: 1.5rem;
 }
+
+#cart-popup-content {
+    text-align: center;
+    padding: 2rem;
+}
+
+#cart-popup-content ul {
+    list-style-type: none;
+}
+
+#cart-popup-content ul li {
+    flex-direction: column;
+}
+
+#cart-popup-content ul li div.product-properties {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+#cart-popup-content li div.product-photo {
+    margin: auto;
+    max-width: 60%;
+    margin-bottom: 1rem;
+}
+
+#cart-popup-content .product-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cart-popup-content .product-buttons button {
+    display: inline-block;
+    background-color: #fff;
+    color: #33364d;
+    padding: 0.7rem 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 40%;
+    text-align: center;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+
 
 /* MEDIA QUERIES */
 @media (max-width: 360px) {
@@ -618,6 +672,10 @@ ul#product-properties li span:nth-of-type(2) {
     .pop-up {
         width: auto;
         max-width: 100%;
+    }
+
+    #cart-popup-content li div.product-photo {
+        max-width: 40%;
     }
 }
 

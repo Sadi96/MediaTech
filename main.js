@@ -4,7 +4,9 @@ fetch('list-of-products.json')
 .then(res => res.json())
 .then(data => {
     listOfProducts = data.products;
+    currentDisplayingProducts = listOfProducts;
     displayAllProducts();
+    divideProductsToPages(currentDisplayingProducts);
     categoryButtons.forEach(button => button.addEventListener('click', () => {sortByCategory(button.dataset.category)}));
 })
 .catch(err => console.error(err));
@@ -23,10 +25,14 @@ const infoPopUp = document.querySelector('.info-popup');
 const cartPopUpWrapper = document.getElementById('cart-popup-wrapper');
 const cartPopUp = document.querySelector('.cart-popup');
 const showCartContentButton = document.getElementById('cart-content-button');
+const searchInput = document.querySelector('#searching-panel input');
 let addToCartButton;
+let deleteFromCartButtons;
 
 // APP DATA HANDLERS
 let productsInCart = [];
+let currentDisplayingProducts = [];
+let dividedProducts = [];
 let scrollY;
 
 // FUNCTIONS
@@ -52,9 +58,52 @@ function makeProductCard(name, price, photo, category, id) {
     return productCardDiv;
 }
 
+function divideProductsToPages(arrayOfProducts) {
+    dividedProducts = [];
+    let index = 9;
+    let subArrayIndex = -1;
+    for (product of arrayOfProducts) {
+        if(index === 9) {
+            dividedProducts.push([]);
+            index = 0;
+            subArrayIndex++;
+        }
+        dividedProducts[subArrayIndex].push(product);
+        index++;
+    }
+    generatePagesButtons();
+    showOnePageOfProducts(1);
+}
+
+function generatePagesButtons() {
+    document.getElementById('page-buttons-panel').innerHTML = '';
+    let index = 1;
+    for(page of dividedProducts) {
+        const button = document.createElement('button');
+        button.textContent = index;
+        button.classList.add('page-button');
+        document.getElementById('page-buttons-panel').appendChild(button);
+        button.addEventListener('click', changeProductsPage);
+        index++;
+    }
+}
+
+function changeProductsPage() {
+    const index = this.textContent / 1;
+    showOnePageOfProducts(index);
+}
+
+function showOnePageOfProducts(pageNumber) {
+    productsPanel.innerHTML = ``;
+    const productsToDisplay = dividedProducts[pageNumber-1];
+    productsToDisplay.forEach(p => productsPanel.appendChild(makeProductCard(p.name, p.price, p.photo, p.category, p.id)));
+    mobileHoverEffectListening();
+    addToCartListening();
+    productInfoListening(); 
+}
+
 function updateCartContent() {
     document.getElementById('cart-content-quantity').textContent = productsInCart.length;
-
     if(productsInCart.length === 1) {
         document.getElementById('declination').textContent = "produkt"
     } else if (productsInCart.length > 1 && productsInCart.length < 5) {
@@ -179,6 +228,7 @@ function renderCartContent() {
             priceSpan.textContent = `${product.price}zł`;
             infoButton.textContent = `Informacje`;
             deleteButton.textContent = `Usuń`;
+            deleteButton.classList.add('delete-button');
             buttons.appendChild(infoButton);
             buttons.appendChild(deleteButton);
             properties.appendChild(nameSpan);
@@ -188,9 +238,18 @@ function renderCartContent() {
             li.appendChild(buttons);
             ul.appendChild(li);
             infoButton.addEventListener('click', switchToProductInfo);
-        })
+        });
         cartPopUpContent.appendChild(ul);
+        deleteFromCartButtons = [...document.querySelectorAll('.delete-button')];
+        deleteFromCartButtons.forEach(button => button.addEventListener('click', deleteFromCart));
     }
+}
+
+function deleteFromCart() {
+    const index = deleteFromCartButtons.indexOf(this);
+    productsInCart.splice(index, 1);
+    updateCartContent();
+    renderCartContent();
 }
 
 function switchToProductInfo() {
@@ -237,7 +296,6 @@ function generateProductInfo(plu) {
     document.getElementById('product-name').innerHTML = product.name;
     document.getElementById('product-price').innerHTML = `${product.price}zł`;
     productPhoto.setAttribute('src', product.photo);
-
     function addingWrapper() {
         addToCartFromPopup(product, productPhoto, addingWrapper);
     }
@@ -275,10 +333,11 @@ function showProductInfo(product) {
 }
 
 function displayAllProducts() {
-    listOfProducts.forEach(p => productsPanel.appendChild(makeProductCard(p.name, p.price, p.photo, p.category, p.id)));
+    divideProductsToPages(listOfProducts);
     mobileHoverEffectListening();
     addToCartListening();
     productInfoListening();
+    currentDisplayingProducts = listOfProducts;
 }
 
 function sortByCategory(category) {
@@ -287,10 +346,21 @@ function sortByCategory(category) {
         return displayAllProducts()
     }
     let productsToDisplay = listOfProducts.filter(product => product.category === category);
-    productsToDisplay.forEach(p => productsPanel.appendChild(makeProductCard(p.name, p.price, p.photo, p.category, p.id)));
+    divideProductsToPages(productsToDisplay);
     mobileHoverEffectListening();
     addToCartListening();
     productInfoListening();
+    currentDisplayingProducts = productsToDisplay;
+}
+
+function searchProducts(e) {
+    productsPanel.innerHTML = ``;
+    const lowerCaseInput = e.target.value.toLowerCase();
+    const productsToDisplay = currentDisplayingProducts.filter(product => product.name.toLowerCase().includes(lowerCaseInput) || product.brand.toLowerCase().includes(lowerCaseInput));
+    divideProductsToPages(productsToDisplay);
+    mobileHoverEffectListening();
+    addToCartListening();
+    productInfoListening(); 
 }
 
 // EVENT LISTENERS
@@ -348,3 +418,6 @@ function productInfoListening() {
 
 // showing cart content
 showCartContentButton.addEventListener('click', showCartPopUp);
+
+//searching products
+searchInput.addEventListener('input', searchProducts);

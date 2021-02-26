@@ -194,7 +194,8 @@ h2 {
     margin: 1rem auto;
 }
 
-.category-button {
+.category-button,
+#page-buttons-panel button {
     display: block;
     background-color: #fff;
     color: #33364d;
@@ -324,6 +325,11 @@ h2 {
 
 .add-to-cart-info.bought {
     top: 0;
+}
+
+#page-buttons-panel {
+    display: flex;
+    justify-content: center;
 }
 
 footer {

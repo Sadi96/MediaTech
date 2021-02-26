@@ -334,9 +334,9 @@ function showProductInfo(product) {
 
 function displayAllProducts() {
     divideProductsToPages(listOfProducts);
-    mobileHoverEffectListening();
-    addToCartListening();
-    productInfoListening();
+    // mobileHoverEffectListening();
+    // addToCartListening();
+    // productInfoListening();
     currentDisplayingProducts = listOfProducts;
 }
 
@@ -347,9 +347,9 @@ function sortByCategory(category) {
     }
     let productsToDisplay = listOfProducts.filter(product => product.category === category);
     divideProductsToPages(productsToDisplay);
-    mobileHoverEffectListening();
-    addToCartListening();
-    productInfoListening();
+    // mobileHoverEffectListening();
+    // addToCartListening();
+    // productInfoListening();
     currentDisplayingProducts = productsToDisplay;
 }
 
@@ -358,9 +358,9 @@ function searchProducts(e) {
     const lowerCaseInput = e.target.value.toLowerCase();
     const productsToDisplay = currentDisplayingProducts.filter(product => product.name.toLowerCase().includes(lowerCaseInput) || product.brand.toLowerCase().includes(lowerCaseInput));
     divideProductsToPages(productsToDisplay);
-    mobileHoverEffectListening();
-    addToCartListening();
-    productInfoListening(); 
+    // mobileHoverEffectListening();
+    // addToCartListening();
+    // productInfoListening(); 
 }
 
 // EVENT LISTENERS
